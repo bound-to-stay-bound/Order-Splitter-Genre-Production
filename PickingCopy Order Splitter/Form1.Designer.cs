@@ -43,6 +43,8 @@ namespace PickingCopy_Order_Splitter
             this.OrderSplitterChoice = new System.Windows.Forms.CheckedListBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.btnCheckAll = new System.Windows.Forms.Button();
+            this.btnUncheckAll = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +91,8 @@ namespace PickingCopy_Order_Splitter
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnUncheckAll);
+            this.groupBox3.Controls.Add(this.btnCheckAll);
             this.groupBox3.Controls.Add(this.OriginalPickDate);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.FakePickDate);
@@ -99,7 +103,7 @@ namespace PickingCopy_Order_Splitter
             this.groupBox3.Controls.Add(this.OrderSplitterChoice);
             this.groupBox3.Location = new System.Drawing.Point(2, 79);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(297, 445);
+            this.groupBox3.Size = new System.Drawing.Size(297, 532);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Split Operations";
@@ -116,7 +120,7 @@ namespace PickingCopy_Order_Splitter
             // label2
             // 
             this.label2.AutoEllipsis = true;
-            this.label2.Location = new System.Drawing.Point(3, 295);
+            this.label2.Location = new System.Drawing.Point(5, 340);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(278, 43);
             this.label2.TabIndex = 18;
@@ -126,7 +130,7 @@ namespace PickingCopy_Order_Splitter
             // FakePickDate
             // 
             this.FakePickDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.FakePickDate.Location = new System.Drawing.Point(116, 374);
+            this.FakePickDate.Location = new System.Drawing.Point(118, 419);
             this.FakePickDate.Name = "FakePickDate";
             this.FakePickDate.Size = new System.Drawing.Size(154, 20);
             this.FakePickDate.TabIndex = 17;
@@ -134,7 +138,7 @@ namespace PickingCopy_Order_Splitter
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 378);
+            this.label4.Location = new System.Drawing.Point(10, 423);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 13);
             this.label4.TabIndex = 16;
@@ -151,7 +155,7 @@ namespace PickingCopy_Order_Splitter
             // 
             // PrintSummary
             // 
-            this.PrintSummary.Location = new System.Drawing.Point(6, 341);
+            this.PrintSummary.Location = new System.Drawing.Point(8, 386);
             this.PrintSummary.Name = "PrintSummary";
             this.PrintSummary.Size = new System.Drawing.Size(281, 27);
             this.PrintSummary.TabIndex = 13;
@@ -161,7 +165,7 @@ namespace PickingCopy_Order_Splitter
             // 
             // UpdateOrder
             // 
-            this.UpdateOrder.Location = new System.Drawing.Point(4, 394);
+            this.UpdateOrder.Location = new System.Drawing.Point(6, 439);
             this.UpdateOrder.Name = "UpdateOrder";
             this.UpdateOrder.Size = new System.Drawing.Size(282, 26);
             this.UpdateOrder.TabIndex = 9;
@@ -186,11 +190,31 @@ namespace PickingCopy_Order_Splitter
             // 
             this.printDialog1.UseEXDialog = true;
             // 
+            // btnCheckAll
+            // 
+            this.btnCheckAll.Location = new System.Drawing.Point(6, 291);
+            this.btnCheckAll.Name = "btnCheckAll";
+            this.btnCheckAll.Size = new System.Drawing.Size(136, 27);
+            this.btnCheckAll.TabIndex = 20;
+            this.btnCheckAll.Text = "Check All";
+            this.btnCheckAll.UseVisualStyleBackColor = true;
+            this.btnCheckAll.Click += new System.EventHandler(this.btnCheckAll_Click);
+            // 
+            // btnUncheckAll
+            // 
+            this.btnUncheckAll.Location = new System.Drawing.Point(148, 291);
+            this.btnUncheckAll.Name = "btnUncheckAll";
+            this.btnUncheckAll.Size = new System.Drawing.Size(136, 27);
+            this.btnUncheckAll.TabIndex = 21;
+            this.btnUncheckAll.Text = "Uncheck All";
+            this.btnUncheckAll.UseVisualStyleBackColor = true;
+            this.btnUncheckAll.Click += new System.EventHandler(this.btnUncheckAll_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 536);
+            this.ClientSize = new System.Drawing.Size(302, 623);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -221,6 +245,8 @@ namespace PickingCopy_Order_Splitter
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label OriginalPickDate;
+        private System.Windows.Forms.Button btnUncheckAll;
+        private System.Windows.Forms.Button btnCheckAll;
     }
 }
 

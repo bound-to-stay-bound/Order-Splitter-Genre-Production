@@ -162,6 +162,8 @@ namespace PickingCopy_Order_Splitter
                     {
                         // 2020-12-23 - Hank Lane - need to handle empty genres when the occur.
                         var genreChoice = OrderSplitterChoice.Items[indexChecked].ToString().Trim();
+                        var gArray = genreChoice.Split('\t');
+                        genreChoice = gArray[0];
                         SQL = "UPDATE Orders.dbo.Titles SET IsPicked = 1 WHERE customerno = '" + Customer + "' AND orderno = '" + Order + "' AND IsPicked IS NULL" +
                           " AND LTRIM(RTRIM(Genre)) = '" + genreChoice + "'";
                         //" AND Genre = '" + OrderSplitterChoice.Items[indexChecked].ToString() + "'";
@@ -220,6 +222,22 @@ namespace PickingCopy_Order_Splitter
 
             linesPrinted = 0;
             e.HasMorePages = false;
+        }
+
+        private void btnCheckAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < OrderSplitterChoice.Items.Count; i++)
+            {
+                OrderSplitterChoice.SetItemChecked(i, true);
+            }
+        }
+
+        private void btnUncheckAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < OrderSplitterChoice.Items.Count; i++)
+            {
+                OrderSplitterChoice.SetItemChecked(i, false);
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

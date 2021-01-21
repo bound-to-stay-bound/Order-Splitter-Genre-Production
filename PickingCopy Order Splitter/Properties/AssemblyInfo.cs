@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PickingCopy Order Splitter Genre")]
+[assembly: AssemblyTitle("PickingCopy Order Splitter Genre Edition")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PickingCopy Order Splitter Genre")]
+[assembly: AssemblyProduct("PickingCopy Order Splitter Genre Edition")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2020.12.23.0")]
-[assembly: AssemblyFileVersion("2020.12.23.0")]
+[assembly: AssemblyVersion("2021.01.21.0")]
+[assembly: AssemblyFileVersion("2021.01.21.0")]

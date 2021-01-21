@@ -152,15 +152,16 @@ namespace PickingCopy_Order_Splitter
 
                     if (formatItem.Length == 1)
                     {
-                        // 2020-12-23 - Hank Lane - need to handle empty classifications when the occur.
+                        // 2020-12-23 - Hank Lane - need to handle empty classifications when they occur.
+                        // 2021-01-21 - Hank Lane - added addition check to make sure Genre is blank when pulling classifications
                         var classChoice = OrderSplitterChoice.Items[indexChecked].ToString().Substring(0, 1).Trim();
                         SQL = "UPDATE Orders.dbo.Titles SET IsPicked = 1 WHERE customerno = '" + Customer + "' AND orderno = '" + Order + "' AND IsPicked IS NULL" +
-                            " AND CollectionCode1 = '' AND substring(Classification,1,1) = '" + classChoice + "'";
+                            " AND CollectionCode1 = '' AND substring(Classification,1,1) = '" + classChoice + "' AND LTRIM(RTRIM(Genre)) =''";
                         //" AND CollectionCode1 = '' AND substring(Classification,1,1) = '" + OrderSplitterChoice.Items[indexChecked].ToString().Substring(0, 1) + "'";
                     }
                     else
                     {
-                        // 2020-12-23 - Hank Lane - need to handle empty genres when the occur.
+                        // 2020-12-23 - Hank Lane - need to handle empty genres when they occur.
                         var genreChoice = OrderSplitterChoice.Items[indexChecked].ToString().Trim();
                         var gArray = genreChoice.Split('\t');
                         genreChoice = gArray[0];

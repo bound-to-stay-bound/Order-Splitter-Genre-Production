@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
@@ -52,11 +48,10 @@ namespace PickingCopy_Order_Splitter
             }
             DR.Close();
             return false;
-
         }
+
         private void GetTitleBreakdown()
         {
-
             if (CustomerOrderNumber.Text.Length == 13)
             {
                 Customer = CustomerOrderNumber.Text.Substring(0, 8);
@@ -85,7 +80,8 @@ namespace PickingCopy_Order_Splitter
                         {
                             OrderSplitterChoice.SetItemChecked(OrderSplitterChoice.Items.Count - 1, true);
                         }
-                        OriginalPickDate.Text = DR["DatePicked"].ToString();
+                        var str = Convert.ToDateTime(DR["DatePicked"].ToString());
+                        OriginalPickDate.Text = str.ToString("MM/dd/yyyy");
                     }
                 }
                 else
@@ -97,9 +93,7 @@ namespace PickingCopy_Order_Splitter
             else
             {
                 MessageBox.Show("Invalid Customer + Order number");
-            }
-
-           
+            }           
         }
 
         public SqlDataReader FetchReader(string inQuery)
@@ -118,6 +112,7 @@ namespace PickingCopy_Order_Splitter
                 GetTitleBreakdown();   
             }
         }
+
         private void RunSQL(string SQL)
         {
             SqlCommand CMD = new SqlCommand(SQL, cn);
@@ -132,7 +127,6 @@ namespace PickingCopy_Order_Splitter
             DBDate += FakePickDate.Value.Day.ToString("00");
             if (MessageBox.Show("Update order " + Customer + " " + Order + "?  This will flag/unflag titles and change the pickdate to " + DBDate, "Update Order?", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-
                 string SQL;
                 DBDate = FakePickDate.Value.Year.ToString("00") + "-";
                 DBDate += FakePickDate.Value.Month.ToString("00") + "-";
@@ -154,9 +148,10 @@ namespace PickingCopy_Order_Splitter
                     {
                         // 2020-12-23 - Hank Lane - need to handle empty classifications when they occur.
                         // 2021-01-21 - Hank Lane - added addition check to make sure Genre is blank when pulling classifications
+                        // 2021-02-19 - Hank Lane - removed CollectionCode1 being blank as a requirement
                         var classChoice = OrderSplitterChoice.Items[indexChecked].ToString().Substring(0, 1).Trim();
                         SQL = "UPDATE Orders.dbo.Titles SET IsPicked = 1 WHERE customerno = '" + Customer + "' AND orderno = '" + Order + "' AND IsPicked IS NULL" +
-                            " AND CollectionCode1 = '' AND substring(Classification,1,1) = '" + classChoice + "' AND LTRIM(RTRIM(Genre)) =''";
+                            " AND substring(Classification,1,1) = '" + classChoice + "' AND LTRIM(RTRIM(Genre)) =''";
                         //" AND CollectionCode1 = '' AND substring(Classification,1,1) = '" + OrderSplitterChoice.Items[indexChecked].ToString().Substring(0, 1) + "'";
                     }
                     else
@@ -174,7 +169,6 @@ namespace PickingCopy_Order_Splitter
                 }
                 MessageBox.Show(Customer + " " + Order + " updated.","Done");
             }
-                        
         }
 
         private void PrintSummary_Click(object sender, EventArgs e)
@@ -245,15 +239,5 @@ namespace PickingCopy_Order_Splitter
         {
             e.Cancel = CheckForSplitOrders();
         }
-
-      
-       
-
-       
-
-      
-
-        
-
     }
 }
